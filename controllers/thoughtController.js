@@ -1,9 +1,7 @@
 const { ObjectId } = require('mongoose').Types;
 const { Thought, User } = require('../models');
 
-//   getAllThoughts,
 //   getThought,
-//   createThought,
 //   updateThought,
 //   deleteThought,
 //   addReaction,
@@ -24,17 +22,14 @@ module.exports = {
   // Get a single thought
   async getThought(req, res) {
     try {
-      const thoughtData = await Thought.findOne({ _id: req.params.thoughttId })
+      const thoughtData = await Thought.findOne({ _id: req.params.thoughtId })
         .select('-__v');
 
       if (!thoughtData) {
         return res.status(404).json({ message: 'No thought with that ID' })
       }
 
-      res.json({
-        thoughtData,
-        grade: await grade(req.params.thoughtId),
-      });
+      res.json(thoughtData);
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
