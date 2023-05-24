@@ -1,10 +1,6 @@
 const { ObjectId } = require('mongoose').Types;
 const { Thought, User } = require('../models');
 
-//   deleteThought,
-//   addReaction,
-//   removeReaction,
-
 module.exports = {
   // Get all thoughts
   async getAllThoughts(req, res) {
@@ -17,6 +13,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
+
   // Get a single thought
   async getThought(req, res) {
     try {
@@ -33,6 +30,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
+
   // create a new thought
   async createThought(req, res) {
     console.log("creating thought")
@@ -51,7 +49,8 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-// Update a thought
+
+  // Update a thought
   async updateThought(req, res) {
     try {
         const thoughtData = await Thought.findOneAndUpdate(
@@ -69,6 +68,7 @@ module.exports = {
         res.status(500).json(err);
     }
     },
+
   // Delete a thought and remove them from the course
   async deleteThought(req, res) {
     try {
@@ -78,13 +78,13 @@ module.exports = {
         return res.status(404).json({ message: 'No such thought exists' });
       }
 
-      const user = await User.findOneAndUpdate(
-        { thoughtData: req.params.thoughtId },
-        { $pull: { thoughtData: req.params.thoughtId } },
+      const userData = await User.findOneAndUpdate(
+        { thoughts: req.params.thoughtId },
+        { $pull: { thoughts: req.params.thoughtId } },
         { new: true }
       );
 
-      if (!user) {
+      if (!userData) {
         return res.status(404).json({
           message: 'Thought deleted, but no users found',
         });
@@ -120,12 +120,13 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
   // Remove reaction from a thought
   async removeReaction(req, res) {
     try {
       const thoughtData = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
-        { $pull: { reaction: { reactionId: req.params.reactionId } } },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
 
