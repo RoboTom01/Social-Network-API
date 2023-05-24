@@ -99,7 +99,7 @@ module.exports = {
 
   // Add an reaction to a thought
   async addReaction(req, res) {
-    console.log('You are adding an reaction');
+    console.log('You are adding a reaction');
     console.log(req.body);
 
     try {
