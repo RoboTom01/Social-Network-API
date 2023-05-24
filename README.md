@@ -1,5 +1,6 @@
 # Social Network API  
   The following project is a `nodejs` app that is able to run database functions using `MongooseDB` and `Express` to demonstrate other ways to run a site's back end without `MySQL`.<br />This is done by a series of routes and controls that allows a user to `seed` Users for the site, create Thoughts associated with those Users, let Users post Reactions to a Thought, and let Users add each other as Friends. Users and Thoughts can also be updated.<br />The back end commands are handled via GET, POST, PUT, and DELETE requests. <br /> Built with the help of UofU Bootcamp TAs.<br /> 
+  [Demo Video](https://watch.screencastify.com/v/imRRb90HccAXXBT9IwxP)<br />
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<br />
   
 
