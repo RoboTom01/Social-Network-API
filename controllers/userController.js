@@ -2,7 +2,6 @@ const { User, Thought } = require('../models');
 
 module.exports = {
 
-// deleteUser,
 // addFriend,
 // removeFriend
 
@@ -21,7 +20,7 @@ module.exports = {
       const userData = await User.findOne({ _id: req.params.userId })
         .select('-__v');
         // .populate("friends")
-        // .populate("thoughts")
+        // .populate("thoughts");
         
 
       if (!userData) {
@@ -53,7 +52,7 @@ module.exports = {
       }
 
       await Thought.deleteMany({ _id: { $in: userData.thoughts } });
-      res.json({ message: 'user and thoughts deleted!' });
+      res.json({ message: 'User and thoughts deleted!' });
     } catch (err) {
       res.status(500).json(err);
     }
