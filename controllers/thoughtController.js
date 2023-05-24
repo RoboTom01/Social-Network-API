@@ -1,8 +1,6 @@
 const { ObjectId } = require('mongoose').Types;
 const { Thought, User } = require('../models');
 
-//   getThought,
-//   updateThought,
 //   deleteThought,
 //   addReaction,
 //   removeReaction,
@@ -53,7 +51,25 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Delete a student and remove them from the course
+// Update a thought
+  async updateThought(req, res) {
+    try {
+        const thoughtData = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $set: req.body },
+        { runValidators: true, new: true }
+        );
+
+        if (!thoughtData) {
+        res.status(404).json({ message: 'No thought with this id!' });
+        }
+
+        res.json(thoughtData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+    },
+  // Delete a thought and remove them from the course
   async deleteThought(req, res) {
     try {
       const thoughtData = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
