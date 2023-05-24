@@ -2,10 +2,6 @@ const { User, Thought } = require('../models');
 
 module.exports = {
 
-// getAllUsers,
-// getUser,
-// createUser,
-// updateUser,
 // deleteUser,
 // addFriend,
 // removeFriend
@@ -24,6 +20,9 @@ module.exports = {
     try {
       const userData = await User.findOne({ _id: req.params.userId })
         .select('-__v');
+        // .populate("friends")
+        // .populate("thoughts")
+        
 
       if (!userData) {
         return res.status(404).json({ message: 'No user with that ID' });

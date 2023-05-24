@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const {
 getAllUsers,
-// getUser,
 createUser,
-// updateUser,
+getUser,
+updateUser,
 // deleteUser,
 // addFriend,
 // removeFriend
@@ -13,12 +13,12 @@ createUser,
 router.route('/').get(getAllUsers).post(createUser);
 
 // /api/courses/:userId
-// router
-//   .route('/:userId')
-//   .get(getSingleCourse)
-//   .put(updateCourse)
-//   .delete(deleteCourse);
+router
+  .route('/:userId')
+  .get(getUser)
+  .put(updateUser)
+//   .delete(deleteUser);
 
-// /api/courses/:userId/friends/:friendID
+// /api/users/:userId/friends/:friendID
 
 module.exports = router;
